@@ -8,7 +8,7 @@ import java.awt.Color;
  * @version 2018.11.26
  */
 
-public class Circle
+public class Circle5
 {
     private int diameter;
     private int xPosition;
@@ -19,11 +19,11 @@ public class Circle
     /**
      * Create a new circle at default position with default color.
      */
-    public Circle()
+    public Circle5()
     {
         diameter = 75;
-        xPosition = 350;
-        yPosition = 150;
+        xPosition = 320;
+        yPosition = 130;
         color = Canvas.getColor("green");
     }    
     

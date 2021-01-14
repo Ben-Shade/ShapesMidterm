@@ -8,7 +8,7 @@ import java.awt.Color;
  * @version 2018.11.26
  */
 
-public class Triangle
+public class Tri2
 {
     private int height;
     private int width;
@@ -20,11 +20,11 @@ public class Triangle
     /**
      * Create a new triangle at default position with default color.
      */
-    public Triangle()
+    public Tri2()
     {
         height = 60;
         width = 70;
-        xPosition = 420;
+        xPosition = 380;
         yPosition = 540;
         color = Canvas.getColor("brown");
         isVisible = false;

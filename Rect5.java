@@ -2,33 +2,36 @@ import java.awt.Graphics;
 import java.awt.Color;
 
 /**
- * A circle that can be manipulated and that draws itself on a canvas.
- * 
+ * A rectangle that can be manipulated and that draws itself on a canvas.
+ *
  * @author  Michael Kölling and David J. Barnes and Brian Dahlem
  * @version 2018.11.26
  */
 
-public class Circle
+public class Rect5
 {
-    private int diameter;
     private int xPosition;
     private int yPosition;
+    private int xSize;
+    private int ySize;
     private Color color;
     private boolean isVisible;
-        
+
     /**
-     * Create a new circle at default position with default color.
+     * Create a new rectangle at default position with default color.
      */
-    public Circle()
+    public Rect5()
     {
-        diameter = 75;
-        xPosition = 350;
-        yPosition = 150;
-        color = Canvas.getColor("green");
-    }    
-    
+        xSize = 125;
+        ySize = 25;
+        xPosition = 370;
+        yPosition = 320;
+        color = Canvas.getColor("brown");
+        isVisible = false;
+    }
+
     /**
-     * Make this circle visible. If it was already visible, do nothing.
+     * Make this rectangle visible. If it was already visible, do nothing.
      */
     public void makeVisible()
     {
@@ -37,9 +40,9 @@ public class Circle
             add();
         }
     }
-    
+
     /**
-     * Make this circle invisible. If it was already invisible, do nothing.
+     * Make this rectangle invisible. If it was already invisible, do nothing.
      */
     public void makeInvisible()
     {
@@ -48,9 +51,9 @@ public class Circle
             isVisible = false;
         }
     }
-    
+
     /**
-     * Move the circle a few pixels to the right.
+     * Move the rectangle a few pixels to the right.
      */
     public void moveRight()
     {
@@ -58,7 +61,7 @@ public class Circle
     }
 
     /**
-     * Move the circle a few pixels to the left.
+     * Move the rectangle a few pixels to the left.
      */
     public void moveLeft()
     {
@@ -66,7 +69,7 @@ public class Circle
     }
 
     /**
-     * Move the circle a few pixels up.
+     * Move the rectangle a few pixels up.
      */
     public void moveUp()
     {
@@ -74,7 +77,7 @@ public class Circle
     }
 
     /**
-     * Move the circle a few pixels down.
+     * Move the rectangle a few pixels down.
      */
     public void moveDown()
     {
@@ -82,8 +85,8 @@ public class Circle
     }
 
     /**
-     * Move the circle horizontally by 'distance' pixels.
-     * @param distance the distance to move the circle along the x axis,
+     * Move the rectangle horizontally by 'distance' pixels.
+     * @param distance the distance to move the rectangle along the x axis, 
      *                  positive to the right
      */
     public void moveHorizontal(int distance)
@@ -92,8 +95,8 @@ public class Circle
     }
 
     /**
-     * Move the circle vertically by 'distance' pixels.
-     * @param distance the distance to move the circle along the y axis,
+     * Move the rectangle vertically by 'distance' pixels.
+     * @param distance the distance to move the rectangle along the y axis, 
      *                  positive down
      */
     public void moveVertical(int distance)
@@ -103,19 +106,31 @@ public class Circle
 
     /**
      * Change the size to the new size (in pixels). Size must be &gt;= 0.
-     * @param newDiameter the diameter of the circle
+     * @param newSize the new width and height of the square
      */
-    public void changeSize(int newDiameter)
+    public void changeSize(int newSize)
     {
-        diameter = newDiameter;
+        xSize = newSize;
+        ySize = newSize;
     }
-    
+
+    /**
+     * Change the size of the rectangle to a new, non-square size.  newHeight and newWidth must be &gt;= 0.
+     * @param newHeight the new length of the rectangle along the y axis
+     * @param newWidth the new width of the rectangle along the x axis
+     */
+    public void changeSize(int newHeight, int newWidth)
+    {
+        xSize = newWidth;
+        ySize = newHeight;
+    }
+
     /**
      * Change the color. Valid colors are "red", "yellow", "blue", "green",
      * "magenta", "cyan", "brown", "white", and "black", or rgb hex strings
      * "#rrggbb" where rr, gg, bb are 2-hexit values for red, green, and
      * blue levels.
-     * @param newColor a lower case string naming the color to change to
+     * @param newColor a string naming the new color for the rectangle
      */
     public void changeColor(String newColor)
     {
@@ -123,19 +138,20 @@ public class Circle
     }
 
     /**
-     * Add the circle to the screen.
+     * Draw a rectangle with current specifications on screen.
      */
     private void add()
     {
         if(isVisible) {
             Canvas canvas = Canvas.getCanvas();
-            canvas.add(this,(g) -> {g.setColor(color);
-                                    g.fillOval(xPosition, yPosition, diameter, diameter);});
+            canvas.add(this, (g) -> {g.setColor(color);
+                                     g.fillRect(xPosition, yPosition,
+                                                xSize, ySize);});
         }
     }
 
     /**
-     * Remove the circle from the screen.
+     * Remove the rectangle from the screen.
      */
     private void remove()
     {
@@ -146,7 +162,7 @@ public class Circle
     }
 
     /**
-     * Get a text description of the circle.
+     * Get a text description of the rectangle.
      */
     public String toString() {
         String visibility;
@@ -157,7 +173,9 @@ public class Circle
             visibility = "Invisible";
         }
 
-        return visibility + " Circle of diameter " + this.diameter + 
+        return visibility + " Rectangle" +
+            " with width " + this.xSize + 
+            " height  " + this.ySize +
             " at (" + this.xPosition + ", " + this.yPosition + ")" +
             " with color " + this.color;
     }
