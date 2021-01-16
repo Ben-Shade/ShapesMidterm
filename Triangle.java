@@ -29,7 +29,14 @@ public class Triangle
         color = Canvas.getColor("brown");
         isVisible = false;
     }
-    
+    public Triangle(int h,int w, int x, int y, Color c)
+    {
+        height = h;
+        width = w;
+        xPosition = x;
+        yPosition = y;
+        color = c;
+    }
     /**
      * Make this triangle visible. If it was already visible, do nothing.
      */
